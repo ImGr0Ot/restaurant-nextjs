@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Arizonia&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arizonia&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply bg-gray-100;
+	@apply text-slate-500;
+	@apply p-0;
+	@apply mx-auto;
+}
+table {
+	@apply text-slate-600;
+}
