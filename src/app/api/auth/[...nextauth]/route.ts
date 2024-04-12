@@ -42,7 +42,7 @@ const handler = NextAuth({
       if (account!.provider === 'google') {
       const {email, name} = user
        try {
-        console.log("antes de entrar en la function")
+        
         await connectDB()
         
       const userClientExists = await UserClient.findOne({email})

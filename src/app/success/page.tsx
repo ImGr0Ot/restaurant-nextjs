@@ -39,7 +39,7 @@ const successPage = async ({
 						height={400}
 						width={300}
 						alt='success gif'
-						src='/tumblr_nabck4lRqM1qiylhgo1_500.gif'
+						src='/c0a4ce21e959bba78e7cc0d3ed02f781.gif'
 						className='object-contain'
 					/>
 				</div>
