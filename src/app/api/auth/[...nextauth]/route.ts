@@ -34,7 +34,7 @@ const handler = NextAuth({
     },
   }),
 ], 
-  callbacks: { redirect: async () => "https://restaurant-nextjs-blue.vercel.app/api/auth/callback/google",
+  callbacks: { redirect: async () => "/",
   
     async signIn({ user, account}) {
       
