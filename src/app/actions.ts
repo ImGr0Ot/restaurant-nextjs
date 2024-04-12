@@ -4,7 +4,7 @@ import { ProductType } from "@/utils/types"
 import Product from "@/models/product.model"
 
 export async function getProducts  () : Promise<ProductType[]>{
-	connectDB()
+	await connectDB()
 	const data = await Product.find({
 		category: "combo",
 	})

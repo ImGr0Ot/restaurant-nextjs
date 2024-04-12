@@ -13,7 +13,7 @@ export default async function productsComponent({
 }: {
 	searchParams: { [key: string]: string | string[] | undefined }
 }) {
-	connectDB()
+	await connectDB()
 	let products: ProductType[] = []
 	if (searchParams.cat) {
 		const data = await Product.find({

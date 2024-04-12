@@ -43,7 +43,7 @@ const handler = NextAuth({
       const {email, name} = user
        try {
         
-        await connectDB()
+        await await connectDB()
         
       const userClientExists = await UserClient.findOne({email})
       if (!userClientExists) {

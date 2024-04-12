@@ -8,7 +8,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 export async function cancelOrder(orderId: string){
     
     try {
-			connectDB()
+			await connectDB()
 			await Order.findByIdAndUpdate(orderId, {
 				status: "Canceled",
 			})
@@ -21,7 +21,7 @@ export async function cancelOrder(orderId: string){
 export async function createOrder(products: CartItemType[], total: number){
     //find products id
     try {
-    await connectDB()
+    await await connectDB()
     let productsName: string [] = []
     const allProducts: ProductType[] = await Product.find()
     allProducts.map(product => {

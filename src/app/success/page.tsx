@@ -13,7 +13,7 @@ const successPage = async ({
 	if (orderId) {
 		//update the order status to paid
 		try {
-			connectDB()
+			await connectDB()
 			await Order.findByIdAndUpdate(orderId.replace(/['"]+/g, ""), {
 				status: "Done",
 			})

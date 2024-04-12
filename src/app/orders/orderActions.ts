@@ -5,7 +5,7 @@ import { OrderType } from "@/utils/types"
 
 export async function getOrders(){
     try {
-          connectDB()
+           await connectDB()
      const orders: OrderType [] = await Order.find()
      
      return JSON.parse(JSON.stringify(orders))

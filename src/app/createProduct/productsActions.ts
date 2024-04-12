@@ -26,7 +26,7 @@ export async function addProduct(name: string,
 		imgUrl,
 		category
 	}
-	try {connectDB()
+	try {await connectDB()
 	//checking by duplicate item
 	const productExisting = await Product.findOne({ name: newProduct.name })
 	if (productExisting) {

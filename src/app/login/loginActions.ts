@@ -9,7 +9,7 @@ export async function login(e: FormData){
       const email = e.get("email")?.toString()  
       const password = e.get("password")?.toString()
    try {
-     connectDB()
+     await connectDB()
 	//checking by duplicate item
 	const userClientExists: UserType | null  = await UserClient.findOne({email})
       if (!userClientExists) {

@@ -53,7 +53,7 @@ export async function addUserClientToDatabase(e: FormData) {
 		email: e.get("email")?.toString(),
 		password: e.get("password")?.toString(),
 	}
-	try {connectDB()
+	try {await connectDB()
 	//checking by duplicate item
 	const userExisting = await UserClient.findOne({ email: newClientUser.email })
 	if (userExisting) {
