@@ -28,13 +28,10 @@ const handler = NextAuth({
       const isPasswordValid = bycrpt.compare(password, userClientFound.password as string)
       if (!isPasswordValid) return null
       console.log(credentials)
-      return credentials as any
-      
-     
-    },
+      return credentials as any },
   }),
 ], 
-  callbacks: { redirect: async () => "https://restaurant-nextjs-ck0j76uoa-anthonys-projects-991f38f4.vercel.app/api/auth/callback/google",
+  callbacks: { redirect: async () => "/",
   
     async signIn({ user, account}) {
       
