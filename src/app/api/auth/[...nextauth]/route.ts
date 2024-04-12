@@ -34,7 +34,7 @@ const handler = NextAuth({
     },
   }),
 ], 
-  callbacks: { redirect: async () => "https://restaurant-nextjs-blue.vercel.app/",
+  callbacks: { redirect: async () => "https://restaurant-nextjs-blue.vercel.app/api/auth/callback/google",
   
     async signIn({ user, account}) {
       
@@ -43,7 +43,7 @@ const handler = NextAuth({
       const {email, name} = user
        try {
         
-        await await connectDB()
+        await connectDB()
         
       const userClientExists = await UserClient.findOne({email})
       if (!userClientExists) {
