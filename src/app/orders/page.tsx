@@ -4,7 +4,7 @@ import { getOrders } from "./orderActions"
 import { FcOk } from "react-icons/fc"
 import { MdOutlinePending } from "react-icons/md"
 import { FcCancel } from "react-icons/fc"
-import { FaRegEdit } from "react-icons/fa"
+
 const DashboardWorkerPage = async () => {
 	const orders: OrderType[] = await getOrders()
 	return (
