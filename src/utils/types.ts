@@ -27,6 +27,7 @@ export interface CartType{
 export interface ActionType{
     addToCart: (item:CartItemType)=>void;
     removeFromCart: (item:CartItemType)=>void;
+    emptyCart: ()=>void;
 }
 export interface OrderType{
         _id: String

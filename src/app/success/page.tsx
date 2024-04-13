@@ -1,28 +1,33 @@
-"use server"
+"use client"
 import Link from "next/link"
 import Image from "next/image"
 import { connectDB } from "@/utils/mongoose"
 import Order from "@/models/order.model"
-
-const successPage = async ({
+import { useEffect } from "react"
+import { useCartStore } from "@/utils/store"
+import { updateOrderStatus } from "./succesActions"
+const SuccessPage = ({
 	searchParams,
 }: {
 	searchParams: { [key: string]: string | string[] | undefined }
 }) => {
+
+	const { emptyCart } = useCartStore()
+	const updateStatus = async () => {
+	
 	const orderId = searchParams.orderId as string
 	if (orderId) {
-		//update the order status to paid
-		try {
-			await connectDB()
-			await Order.findByIdAndUpdate(orderId.replace(/['"]+/g, ""), {
-				status: "Done",
-			})
-			console.log("Order status updated")
-		} catch (error) {
-			console.log(error)
-		}
+			updateOrderStatus(orderId)
+			emptyCart()
 	}
-
+    
+}
+useEffect(() => {
+	async () => {
+		updateStatus()
+	}
+   
+},)
 	return (
 		<>
 			<div className='bg-gradient-to-b from-green-500 h-[300px] w-full fixed top-0 -z-10'></div>
@@ -53,4 +58,4 @@ const successPage = async ({
 	)
 }
 
-export default successPage
+export default SuccessPage

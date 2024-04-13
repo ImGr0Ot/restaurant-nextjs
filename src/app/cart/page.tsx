@@ -7,14 +7,18 @@ import {
 	createOrder,
 } from "./cartActions"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useTransition } from "react"
+import { useSession } from "next-auth/react"
 import BeatLoader from "react-spinners/BeatLoader"
-
+import { useContext, useEffect, useTransition } from "react"
+import { Context } from "../context/Context"
+import {toast} from "react-toastify"
 const CartPage = () => {
 	const [isPending, startTransition] = useTransition()
 	const router = useRouter()
 	const searchParams = useSearchParams()
+	const { status } = useSession () 
 	const { products, totalItems, totalPrice, removeFromCart } = useCartStore()
+	const { isAuthenticated} = useContext(Context)
 
 	const updateOrder = async () => {
 		const orderId = searchParams.get("orderId")
@@ -25,6 +29,16 @@ const CartPage = () => {
 	const createCheckoutSession = () => {
 		startTransition(async () => {
 			try {
+				
+				//check if the user is logged in
+				if (!isAuthenticated && (status !== "authenticated")) {
+				    toast.error("Please login to checkout",{
+						position: "top-right",
+						autoClose: 5000,
+					})
+					router.push("/login")
+					return
+				}
 				//call backend to create checkout session and create the order
 				const orderId = await createOrder(products, totalPrice)
 				const checkoutSession = await createCheckoutSessionServer(
@@ -32,7 +46,9 @@ const CartPage = () => {
 					orderId!
 				)
 				if (checkoutSession) {
+				 
 					//redirecting to stripe checkout
+					//empty the cart after checkout
 					router.push(checkoutSession)
 				}
 			} catch (error) {

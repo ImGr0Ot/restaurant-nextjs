@@ -21,7 +21,7 @@ export async function cancelOrder(orderId: string){
 export async function createOrder(products: CartItemType[], total: number){
     //find products id
     try {
-    await await connectDB()
+    await connectDB()
     let productsName: string [] = []
     const allProducts: ProductType[] = await Product.find()
     allProducts.map(product => {
@@ -70,7 +70,8 @@ export async function createCheckoutSessionServer(products: CartItemType[], orde
             }
         }
     }))
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create(
+    {
         payment_method_types: ['card'],
         shipping_address_collection: {
             allowed_countries: ['US', 'CA']
@@ -82,5 +83,7 @@ export async function createCheckoutSessionServer(products: CartItemType[], orde
         metadata: {
             images: JSON.stringify(products.map(product => product.imgUrl))
         }
-    })
+    },
+        
+    )
     return session.url as string}
