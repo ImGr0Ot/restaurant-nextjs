@@ -47,9 +47,9 @@ const NavBar = () => {
         <Link href={"/"}>
           <Image
             className="cursor-pointer"
-            src={"/GROOTLOGO-removebg--WHITE-VECTORIZADO-ARREGLADOsvg.svg"}
-            width={80}
-            height={80}
+            src={"/logo.png"}
+            width={100}
+            height={100}
             alt="logo"
           />
         </Link>
